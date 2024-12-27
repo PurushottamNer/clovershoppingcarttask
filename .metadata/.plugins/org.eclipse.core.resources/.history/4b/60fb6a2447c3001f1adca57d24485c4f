@@ -1,0 +1,40 @@
+package com.clover.controller;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.clover.dto.CatalogDTO;
+import com.clover.model.Cart;
+import com.clover.service.CartService;
+
+@RestController
+@RequestMapping("/cartService")
+public class CartController {
+
+	@Autowired
+	private CartService cartService;
+
+	private static final Logger logger = LoggerFactory.getLogger(CatalogController.class);
+
+	@PostMapping("/addCart")
+	public ResponseEntity<?> addToCart(@RequestParam String customerId) {
+		Cart cart = cartService.addToCart(customerId);
+		if (cart) {
+			logger.info("CartController: Cart added successfully");
+			return new ResponseEntity<>("{\"status\":\"success\"}", HttpStatus.OK);
+		}
+		logger.error("CartController: Failed to add cart");
+		return new ResponseEntity<>("{\"status\":\"failed\"}", HttpStatus.BAD_REQUEST);
+	}
+
+}

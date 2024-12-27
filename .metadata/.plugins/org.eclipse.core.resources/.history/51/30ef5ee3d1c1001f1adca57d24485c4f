@@ -1,0 +1,5 @@
+package com.clover.model;
+
+public class Inventory {
+
+}

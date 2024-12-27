@@ -1,0 +1,24 @@
+package com.clover.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.clover.model.Catalog;
+
+@Repository
+public interface CatalogRepository extends JpaRepository<Catalog, String> {
+	Catalog findProductByProductIdAndIsActiveTrue(String productId);
+
+	List<Catalog> findByIsActiveTrue();
+
+	@Query()
+	public void findByIdAndIsActiveTrue(String productId);
+
+	@Query(value = "SELECT * FROM catalog WHERE is_active = 1 AND product_id = 'PRO20241223155025340'", nativeQuery = false)
+	public Catalog findActiveProductById(@Param("productId") String productId);
+
+}

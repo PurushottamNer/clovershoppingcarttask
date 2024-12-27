@@ -1,0 +1,29 @@
+package com.clover.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartItem {
+
+	@Id
+	private String cartItemId;
+	private String cartProductId;
+	private String cartProductName;
+	private Integer quantity;
+	private Double priceOfCartItem;
+	private Double totalPriceOfCartItem;
+
+	private Boolean isActive;
+
+}

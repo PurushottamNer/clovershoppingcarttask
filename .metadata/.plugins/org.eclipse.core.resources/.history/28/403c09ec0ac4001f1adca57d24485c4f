@@ -1,0 +1,13 @@
+package com.clover.service;
+
+import com.clover.model.CartRequest;
+
+public interface CartService {
+
+	public boolean addToCart(String customerId, CartRequest cartRequest);
+
+	public boolean updateCart(String customerId, CartRequest cartRequest);
+
+	public int softDeleteCardeleteCartByCustomerIdtItem(String customerId, String cartProductId,
+			String cartInventoryId);
+}

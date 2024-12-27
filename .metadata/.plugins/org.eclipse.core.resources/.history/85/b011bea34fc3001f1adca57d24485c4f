@@ -1,0 +1,45 @@
+package com.clover.model;
+
+import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class Cart {
+
+	@Id
+	private String cartId;
+	private String customerId;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CartItem> items;
+	
+	private String totalPrice;
+	private String paymentStatus;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
+
+	private Boolean isActive;
+}
+
+{"totalPrice":500.0,"discounts":50.0,"taxes":25.0,"shippingAddress":"123 Main St, Springfield, IL","paymentStatus":"Pending","deliveryStatus":"Not Shipped","items":[{"cartItemId":"CRI123456","cartProductId":"PRO123456","productName":"Smartphone XYZ","productDescription":"Latest model with enhanced camera features.","productImageUrl":"http://example.com/images/smartphone.jpg","productCategory":"Electronics","cartItemTotalPrice":200.0,"quantity":2,"price":100.0,"isGiftWrapped":true,"promoCodeApplied":"SAVE10"},{"cartItemId":"CRI123457","cartProductId":"PRO123457","productName":"Laptop ABC","productDescription":"Lightweight laptop with high performance.","productImageUrl":"http://example.com/images/laptop.jpg","productCategory":"Electronics","cartItemTotalPrice":300.0,"quantity":1,"price":250.0,"isGiftWrapped":false,"promoCodeApplied":"SAVE10"}]}

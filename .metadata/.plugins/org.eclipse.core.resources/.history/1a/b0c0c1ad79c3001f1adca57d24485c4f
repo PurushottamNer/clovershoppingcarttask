@@ -1,0 +1,18 @@
+package com.clover.service;
+
+import java.util.List;
+
+import com.clover.dto.InventoryDto;
+import com.clover.dto.QuantityUpdateRequest;
+
+public interface InventoryService {
+
+	public boolean addInventory(String productId, List<InventoryDto> inventoryDTOList);
+
+	public List<InventoryDto> getInventoryByProductId(String productId);
+
+	public boolean updateInventoryByProductId(String productId, InventoryDto inventoryDto);
+
+	public InventoryDto updateQuantityByInventoryId(String inventoryId, QuantityUpdateRequest quantityUpdateRequest);
+
+}

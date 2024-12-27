@@ -1,0 +1,20 @@
+package com.clover.enums;
+
+public enum MetroCities {
+	MUMBAI, DELHI, BANGALORE, KOLKATA, CHENNAI, HYDERABAD, PUNE, AHMEDABAD, CHANDIGARH, JAIPUR;
+
+	// Method to check if a city is a metro city (case-insensitive)
+	public static boolean isMetroCity(String city) {
+		// Convert city name to upper case for case-insensitive comparison
+		if (city == null) {
+			return false;
+		}
+		try {
+			// Use the name() method to match against enum constants
+			return valueOf(city.toUpperCase()) != null;
+		} catch (IllegalArgumentException e) {
+			// If the city doesn't exist in the enum, return false
+			return false;
+		}
+	}
+}

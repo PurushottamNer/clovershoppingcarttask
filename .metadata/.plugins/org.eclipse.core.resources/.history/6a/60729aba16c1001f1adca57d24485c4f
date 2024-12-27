@@ -1,0 +1,65 @@
+package com.clover.model;
+
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
+public class Catalog {
+
+	@Id
+	private String productId;
+	private String productName;
+	@Column(length = 1000)
+	private String productDescription;
+	private Double price;
+	private String currency;
+	private String category; // e.g., Electronics, Clothing
+	private Double averageRating; // Average rating out of 5
+	private Integer reviewCount; // Number of reviews
+	private String brand;
+	private String modelNumber;
+	private String dimensions; // Product dimensions, e.g., "15.6 x 10.2 x 0.8 inches"
+	private String weight;
+	private String color;
+	private String warranty;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedAt;
+	private boolean isActive;
+
+	public Catalog() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Catalog(String productId, String productName, String productDescription, Double price, String currency,
+			String category, Double averageRating, Integer reviewCount, String brand, String modelNumber,
+			String dimensions, String weight, String color, String warranty, Date createdAt, Date modifiedAt,
+			boolean isActive) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.currency = currency;
+		this.category = category;
+		this.averageRating = averageRating;
+		this.reviewCount = reviewCount;
+		this.brand = brand;
+		this.modelNumber = modelNumber;
+		this.dimensions = dimensions;
+		this.weight = weight;
+		this.color = color;
+		this.warranty = warranty;
+		this.createdAt = createdAt;
+		this.modifiedAt = modifiedAt;
+		this.isActive = isActive;
+	}
+
+}

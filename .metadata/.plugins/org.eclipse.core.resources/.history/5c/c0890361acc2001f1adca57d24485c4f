@@ -1,0 +1,17 @@
+package com.clover.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.clover.dto.CustomerDto;
+import com.clover.service.CustomerService;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Override
+	public boolean addCsutomer(CustomerDto customerDto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

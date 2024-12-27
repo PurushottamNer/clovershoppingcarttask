@@ -1,0 +1,23 @@
+package com.clover.model;
+
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class Inventory {
+	private String inventoryId;
+	private String inventoryProductId;
+	private Integer quantity;
+	private Integer availableQuantity;
+	private Double price;
+	private String warehouseLocation;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedAt;
+
+	@Enumerated(EnumType.STRING)
+	private InventoryStatus inventoryStatus;
+}

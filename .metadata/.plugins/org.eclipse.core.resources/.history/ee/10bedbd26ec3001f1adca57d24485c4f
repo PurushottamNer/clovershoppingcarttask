@@ -1,0 +1,9 @@
+package com.clover.service;
+
+import com.clover.model.CartItem;
+
+public interface CartService {
+
+	public boolean addToCart(String customerId, String productId, CartItem cartItemRequest);
+
+}

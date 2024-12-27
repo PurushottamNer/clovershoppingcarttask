@@ -1,0 +1,8 @@
+package com.clover.feignCleint;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name = "catalog-service", url = "http://catalog-service/api/catalog")
+public class CatalogClient {
+
+}

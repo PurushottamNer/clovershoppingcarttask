@@ -1,0 +1,58 @@
+package com.clover.controller;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.clover.dto.CatalogDTO;
+import com.clover.model.Catalog;
+import com.clover.service.CatalogService;
+
+@RestController
+@RequestMapping("/clover")
+public class CatalogController {
+
+	@Autowired
+	private CatalogService catalogService;
+
+	private static final Logger logger = LoggerFactory.getLogger(CatalogController.class);
+
+	@PostMapping("/api/addProduct")
+	public ResponseEntity<?> addProducts(@RequestBody List<CatalogDTO> catalogDTOList) {
+		boolean result = catalogService.addProduct(catalogDTOList);
+
+		if (result) {
+			logger.info("CatalogController: Products added successfully");
+			return new ResponseEntity<>("{\"status\":\"success\"}", HttpStatus.OK);
+		}
+		logger.error("CatalogController: Failed to add products");
+		return new ResponseEntity<>("{\"status\":\"failed\"}", HttpStatus.BAD_REQUEST);
+	}
+
+	@GetMapping("/api/getAllProducts")
+	public ResponseEntity<?> getAllProducts() {
+		List<CatalogDTO> listOfProducts = catalogService.getAllProducts();
+
+		if (listOfProducts.isEmpty()) {
+			return new ResponseEntity<>(listOfProducts, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(listOfProducts, HttpStatus.OK);
+	}
+
+	@PutMapping("/api/updateProduct")
+	public ResponseEntity<?> updateProductByproductId(@RequestBody Catalog catalog, @RequestParam String productId) {
+
+	}
+
+}

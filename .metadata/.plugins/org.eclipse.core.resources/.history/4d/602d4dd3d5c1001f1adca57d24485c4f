@@ -1,0 +1,14 @@
+package com.clover.dto;
+
+import jakarta.persistence.Id;
+
+public class InventoryDto {
+
+	@Id
+	private String inventoryId;
+	private String inventoryProductId;
+	private Integer quantity;
+	private Integer availableQuantity;
+	private Double price;
+	private String warehouseLocation;
+}

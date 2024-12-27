@@ -1,0 +1,10 @@
+package com.clover.feignCleint;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name = "inventory-service", url = "${inventory-service.url}")
+public class CatalogClient {
+
+	@GetMapping("/getInventoryByProductId")
+	Inventory getInventoryByProductId(@RequestParam("productId") String productId);
+}

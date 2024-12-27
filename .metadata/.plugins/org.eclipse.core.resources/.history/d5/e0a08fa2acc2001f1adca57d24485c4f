@@ -1,0 +1,22 @@
+package com.clover.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.clover.dto.CustomerDto;
+import com.clover.repository.CustomerRepository;
+import com.clover.service.CustomerService;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Autowired
+	private CustomerRepository customerRepository;
+
+	@Override
+	public boolean addCsutomer(CustomerDto customerDto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

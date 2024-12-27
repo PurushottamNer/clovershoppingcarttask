@@ -1,0 +1,24 @@
+package com.clover.model;
+
+import java.util.Date;
+
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+public class CartItem {
+	private String cartItemId;
+	private String cartProductId;
+	private String cartProductName;
+	private String cartInventoryId;
+	private Integer quantity;
+	private Double priceOfCartItem;
+	private Double totalPriceOfCartItem;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedAt;
+
+	private Boolean isActive;
+}

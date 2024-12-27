@@ -1,0 +1,10 @@
+package com.clover.ServiceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.clover.service.OrderService;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+
+}

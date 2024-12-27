@@ -1,0 +1,13 @@
+package com.clover.feignCleint;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+// http://localhost:8084/cartService/getAllActiveCartsByCustomerId?customerId=CST20241226125954953
+@FeignClient(name = "cart-service", url = "${cart-service.url}")
+public class CartClient {
+	@GetMapping("/getAllActiveCartsByCustomerId")
+	List<Cart> getAllActiveCartsByCustomerId(@RequestParam("customerId") String customerId);
+}

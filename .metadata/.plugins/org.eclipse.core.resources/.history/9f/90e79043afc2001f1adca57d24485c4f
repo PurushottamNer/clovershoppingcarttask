@@ -1,0 +1,20 @@
+package com.clover.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.clover.service.CustomerService;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerController {
+
+	@Autowired
+	private CustomerService customerService;
+
+	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
+}

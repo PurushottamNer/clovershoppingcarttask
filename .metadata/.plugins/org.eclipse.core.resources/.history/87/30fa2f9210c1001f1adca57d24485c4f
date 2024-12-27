@@ -1,0 +1,12 @@
+package com.clover.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.clover.model.Catalog;
+
+@Repository
+public interface CatalogRepository extends JpaRepository<Catalog, String> {
+	Catalog findProductByProductIdAndIsActiveTrue(String productId);
+
+}

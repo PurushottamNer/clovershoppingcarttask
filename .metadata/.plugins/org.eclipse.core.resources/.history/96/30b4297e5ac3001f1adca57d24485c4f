@@ -1,0 +1,41 @@
+package com.clover.config;
+
+public class ApiResponse {
+	private boolean success;
+	private String message;
+	private Double price;
+	private String inventoryProductName;
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getInventoryProductName() {
+		return inventoryProductName;
+	}
+
+	public void setInventoryProductName(String inventoryProductName) {
+		this.inventoryProductName = inventoryProductName;
+	}
+
+}

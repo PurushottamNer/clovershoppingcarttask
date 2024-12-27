@@ -1,0 +1,11 @@
+package com.clover.service;
+
+import java.util.List;
+
+import com.clover.dto.InventoryDto;
+
+public interface InventoryService {
+
+	public boolean addInventory(String productId, List<InventoryDto> inventoryDTOList);
+
+}

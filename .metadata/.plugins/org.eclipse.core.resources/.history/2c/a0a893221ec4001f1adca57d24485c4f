@@ -1,0 +1,30 @@
+package com.clover.model;
+
+import java.util.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderItem {
+
+	@Id
+	private String orderItemId; // Unique order item ID
+	private String cartItemId; // Reference to the cart item that is now an order item
+	private String productId; // Product ID
+	private String productName; // Product name
+	private String inventoryId; // Inventory ID (the inventory from which the item is shipped)
+	private int quantity; // Quantity of the product in the order
+	private double unitPrice; // Price of one unit of the product
+	private double totalPrice;
+}

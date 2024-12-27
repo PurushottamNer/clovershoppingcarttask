@@ -1,0 +1,30 @@
+package com.clover.model;
+
+import java.util.Date;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
+public class Inventory {
+	@Id
+	private String inventoryId;
+	private String inventoryProductId;
+	private Integer quantity;
+	private Integer availableQuantity;
+	private Double price;
+	private String warehouseLocation;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastUpdated;
+
+	@Enumerated(EnumType.STRING)
+	private InventoryStatus inventoryStatus;
+
+	private Boolean isActive;
+}

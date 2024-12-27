@@ -1,0 +1,88 @@
+package com.clover.serviceImpl;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.clover.converter.CustomerConverter;
+import com.clover.dto.CustomerDto;
+import com.clover.model.Customer;
+import com.clover.repository.CustomerRepository;
+import com.clover.service.CustomerService;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Autowired
+	private CustomerRepository customerRepository;
+
+	@Autowired
+	private CustomerConverter customerConverter;
+
+	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+
+	public static String idGenerator() {
+		String idGen = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+		return idGen;
+	}
+
+	@Override
+	public boolean addCustomer(CustomerDto customerDto) {
+		try {
+			logger.info("CustomerServiceImpl:addCustomer execution started");
+
+			if (customerDto == null) {
+				logger.error("CustomerServiceImpl: Please provide valid data");
+				return false;
+			}
+
+			List<Customer> customer = new ArrayList<>();
+
+			Customer custom = customerConverter.dtoToEntity(customerDto);
+
+			boolean isUniqueIdFound = false;
+			String uniqueId = "";
+			while (!isUniqueIdFound) {
+				uniqueId = "CST" + CustomerServiceImpl.idGenerator();
+				if (catalogRepository.findById(uniqueId).isEmpty()) {
+					isUniqueIdFound = true;
+				}
+
+				catalog.setProductId(uniqueId);
+				catalog.setProductName(catalogDTO.getProductName());
+				catalog.setProductDescription(catalogDTO.getProductDescription());
+				catalog.setPrice(catalogDTO.getPrice());
+				catalog.setCurrency(catalogDTO.getCurrency());
+				catalog.setCategory(catalogDTO.getCategory());
+				catalog.setAverageRating(catalogDTO.getAverageRating());
+				catalog.setReviewCount(catalogDTO.getReviewCount());
+				catalog.setBrand(catalogDTO.getBrand());
+				catalog.setModelNumber(catalogDTO.getModelNumber());
+				catalog.setDimensions(catalogDTO.getDimensions());
+				catalog.setWeight(catalogDTO.getWeight());
+				catalog.setColor(catalogDTO.getColor());
+				catalog.setWarranty(catalogDTO.getWarranty());
+				catalog.setCreatedAt(new Date());
+				catalog.setActive(true);
+
+				catalogs.add(catalog);
+			}
+
+			catalogRepository.saveAll(catalogs);
+
+			logger.info("CatalogServiceImpl:addProducts execution completed successfully");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("addProducts: Something went wrong", e.getMessage());
+			return false;
+		}
+	}
+
+}

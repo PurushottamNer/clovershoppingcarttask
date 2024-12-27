@@ -1,0 +1,7 @@
+package com.clover.service;
+
+public interface CartService {
+
+	public boolean addToCart(String customerId, String productId);
+
+}

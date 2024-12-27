@@ -1,0 +1,13 @@
+package com.clover.model;
+
+import jakarta.persistence.Id;
+
+public class Inventory {
+
+	@Id
+	private String inventoryId;
+	private String productId;
+	private Integer quantity;
+	private Integer availableQuantity;
+
+}

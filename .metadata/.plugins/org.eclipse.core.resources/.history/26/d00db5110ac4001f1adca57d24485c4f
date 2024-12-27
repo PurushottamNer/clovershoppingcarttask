@@ -1,0 +1,78 @@
+package com.clover.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.clover.model.Cart;
+import com.clover.model.CartItem;
+import com.clover.model.CartRequest;
+import com.clover.service.CartService;
+
+@RestController
+@RequestMapping("/cartService")
+public class CartController {
+
+	@Autowired
+	private CartService cartService;
+
+	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
+	@PostMapping("/addCart")
+	public ResponseEntity<?> addToCart(@RequestParam String customerId, @RequestBody CartRequest cartItemRequest) {
+		boolean cart = cartService.addToCart(customerId, cartItemRequest);
+		if (cart) {
+			logger.info("CartController: Cart added successfully");
+			return new ResponseEntity<>("{\"status\":\"success\"}", HttpStatus.OK);
+		}
+		logger.error("CartController: Failed to add cart");
+		return new ResponseEntity<>("{\"status\":\"failed\"}", HttpStatus.BAD_REQUEST);
+	}
+
+	@PutMapping("/updateCart")
+	public ResponseEntity<String> updateCart(@RequestParam String customerId, @RequestBody CartRequest cartRequest) {
+		boolean isUpdated = cartService.updateCart(customerId, cartRequest);
+		if (isUpdated) {
+			return ResponseEntity.ok("Cart updated successfully.");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to update cart.");
+		}
+	}
+
+	@DeleteMapping("/deleteCartByCustomerId")
+	public ResponseEntity<Map<String, Object>> deleteCartByCustomerId(@RequestParam String customerId,
+			@RequestBody CartItemDeleteRequest deleteRequest) {
+		try {
+			// Call the service method for soft delete
+			int removedQuantity = cartService.softDeleteCartItem(customerId, deleteRequest.getCartProductId(),
+					deleteRequest.getCartInventoryId());
+
+			if (removedQuantity > 0) {
+				Map<String, Object> response = new HashMap<>();
+				response.put("message", "Item successfully removed from cart.");
+				response.put("removedQuantity", removedQuantity);
+				return ResponseEntity.ok(response);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND)
+						.body(Collections.singletonMap("message", "Item not found in the cart."));
+			}
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Collections.singletonMap("message", "An error occurred while deleting the cart item."));
+		}
+	}
+
+}

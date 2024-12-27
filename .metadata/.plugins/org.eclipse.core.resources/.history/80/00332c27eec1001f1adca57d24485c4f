@@ -1,0 +1,5 @@
+package com.clover.config;
+
+public class InventoryConfig {
+
+}

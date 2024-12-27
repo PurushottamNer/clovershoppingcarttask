@@ -1,0 +1,42 @@
+package com.clover.model;
+
+import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class Order {
+
+	@Id
+	private String orderId;
+	private String customerId;
+//	private List<OrderItem> orderItems; // List of items being ordered (from cart)
+	private Double totalAmount;
+	private String paymentStatus;
+	private String orderStatus; // (PENDING, SHIPPED, DELIVERED, CANCELLED)
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
+
+	private Date deliveryDate; // Expected delivery date (if applicable)
+	private String shippingAddress; // Shipping address for the order
+	private String paymentMethod; // Payment method (e.g., CREDIT_CARD, PAYPAL)
+	private String trackingNumber;
+}

@@ -1,0 +1,15 @@
+package com.clover.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.clover.model.Catalog;
+import com.clover.model.Customer;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, String> {
+	@Query(value = "SELECT * FROM catalog WHERE is_active = 1 AND product_id = :productId", nativeQuery = true)
+	public Catalog findActiveProductById(@Param("productId") String productId);
+}

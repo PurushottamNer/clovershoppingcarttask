@@ -1,0 +1,5 @@
+package com.clover.service;
+
+public class InventoryService {
+
+}

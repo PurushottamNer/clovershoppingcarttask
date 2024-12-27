@@ -1,0 +1,35 @@
+package com.clover.model;
+
+import java.util.Date;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class Inventory {
+	private String inventoryId;
+	private String inventoryProductId;
+	private Integer quantity;
+	private Integer availableQuantity;
+	private Double price;
+	private String warehouseLocation;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedAt;
+
+	@Enumerated(EnumType.STRING)
+	private InventoryStatus inventoryStatus;
+}

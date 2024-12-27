@@ -1,0 +1,133 @@
+package com.clover.model;
+
+import java.util.Date;
+
+import com.clover.enums.InventoryStatus;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
+public class Inventory {
+
+	@Id
+	private String inventoryId;
+	private String inventoryProductId;
+	private Integer quantity;
+	private Integer availableQuantity;
+	private Double price;
+	private String warehouseLocation;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastUpdated;
+
+	@Enumerated(EnumType.STRING)
+	private InventoryStatus inventoryStatus;
+
+	private Boolean isActive;
+
+	public Inventory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Inventory(String inventoryId, String inventoryProductId, Integer quantity, Integer availableQuantity,
+			Double price, String warehouseLocation, Date lastUpdated, InventoryStatus inventoryStatus,
+			Boolean isActive) {
+		super();
+		this.inventoryId = inventoryId;
+		this.inventoryProductId = inventoryProductId;
+		this.quantity = quantity;
+		this.availableQuantity = availableQuantity;
+		this.price = price;
+		this.warehouseLocation = warehouseLocation;
+		this.lastUpdated = lastUpdated;
+		this.inventoryStatus = inventoryStatus;
+		this.isActive = isActive;
+	}
+
+	public String getInventoryId() {
+		return inventoryId;
+	}
+
+	public void setInventoryId(String inventoryId) {
+		this.inventoryId = inventoryId;
+	}
+
+	public String getInventoryProductId() {
+		return inventoryProductId;
+	}
+
+	public void setInventoryProductId(String inventoryProductId) {
+		this.inventoryProductId = inventoryProductId;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public Integer getAvailableQuantity() {
+		return availableQuantity;
+	}
+
+	public void setAvailableQuantity(Integer availableQuantity) {
+		this.availableQuantity = availableQuantity;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getWarehouseLocation() {
+		return warehouseLocation;
+	}
+
+	public void setWarehouseLocation(String warehouseLocation) {
+		this.warehouseLocation = warehouseLocation;
+	}
+
+	public Date getLastUpdated() {
+		return lastUpdated;
+	}
+
+	public void setLastUpdated(Date lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
+
+	public InventoryStatus getInventoryStatus() {
+		return inventoryStatus;
+	}
+
+	public void setInventoryStatus(InventoryStatus inventoryStatus) {
+		this.inventoryStatus = inventoryStatus;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	@Override
+	public String toString() {
+		return "Inventory [inventoryId=" + inventoryId + ", inventoryProductId=" + inventoryProductId + ", quantity="
+				+ quantity + ", availableQuantity=" + availableQuantity + ", price=" + price + ", warehouseLocation="
+				+ warehouseLocation + ", lastUpdated=" + lastUpdated + ", inventoryStatus=" + inventoryStatus
+				+ ", isActive=" + isActive + "]";
+	}
+
+}

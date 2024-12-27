@@ -1,0 +1,20 @@
+package com.clover.converter;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+
+@Component
+public class InventoryConverter {
+
+	public CatalogDTO entityToDto(Catalog catalog) {
+		CatalogDTO catalogDTO = new CatalogDTO();
+		BeanUtils.copyProperties(catalog, catalogDTO);
+		return catalogDTO;
+	}
+
+	public Catalog dtoToEntity(CatalogDTO catalogDTO) {
+		Catalog catalog = new Catalog();
+		BeanUtils.copyProperties(catalogDTO, catalog);
+		return catalog;
+	}
+}

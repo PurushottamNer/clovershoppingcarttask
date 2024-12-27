@@ -1,0 +1,9 @@
+package com.clover.dto;
+
+import java.util.List;
+
+public class QuantityUpdateRequest {
+
+	private Integer quantity;
+
+}
