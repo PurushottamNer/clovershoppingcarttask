@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="updateQuantityByProductIdAndInventoryId"/>
+		<item key="selection" value="cartClient"/>
 		<list key="findhistory">
+			<item value="cartClient"/>
+			<item value="inventoryClient"/>
 			<item value="updateQuantityByProductIdAndInventoryId"/>
 			<item value="getInventoryByProductId"/>
 		</list>

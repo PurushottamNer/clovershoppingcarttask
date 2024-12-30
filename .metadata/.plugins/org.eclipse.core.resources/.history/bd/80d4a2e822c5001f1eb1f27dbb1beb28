@@ -1,0 +1,22 @@
+package com.clover.model;
+
+public class CartRequestForOrderService {
+	private List<CartItemForUpdate> items;
+
+	// Getter and Setter
+	public List<CartItemForUpdate> getItems() {
+		return items;
+	}
+
+	public void setItems(List<CartItemForUpdate> items) {
+		this.items = items;
+	}
+
+	// Constructor
+	public CartRequestForOrderService(List<CartItemForUpdate> items) {
+		this.items = items;
+	}
+
+	public CartRequestForOrderService() {
+	}
+}

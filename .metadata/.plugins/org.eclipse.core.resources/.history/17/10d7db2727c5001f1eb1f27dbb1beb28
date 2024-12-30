@@ -1,0 +1,20 @@
+package com.clover.model;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartUpdateRequest {
+	private String cartProductId;
+	private String cartInventoryId;
+	private int quantity;
+}

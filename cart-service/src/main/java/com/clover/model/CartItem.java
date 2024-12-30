@@ -29,6 +29,8 @@ public class CartItem {
 	private Double priceOfCartItem;
 	private Double totalPriceOfCartItem;
 
+	private String orderStatus;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 

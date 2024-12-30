@@ -57,6 +57,30 @@ public class CartController {
 		}
 	}
 
+	@PutMapping("/updateCartByOrderService")
+	public ResponseEntity<String> updateCartByOrderService(@RequestParam String customerId,
+			@RequestParam String cartProductId, @RequestParam String cartInventoryId) {
+		logger.info("Received request with customerId={}, cartProductId={}, cartInventoryId={}", customerId,
+				cartProductId, cartInventoryId);
+
+		if (customerId == null || customerId.isEmpty() || cartProductId == null || cartProductId.isEmpty()
+				|| cartInventoryId == null || cartInventoryId.isEmpty()) {
+			logger.error("Invalid parameters: customerId={}, cartProductId={}, cartInventoryId={}", customerId,
+					cartProductId, cartInventoryId);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid parameters.");
+		}
+
+		boolean isUpdated = cartService.updateCartByOrderService(customerId, cartProductId, cartInventoryId);
+
+		if (isUpdated) {
+			logger.info("Cart updated successfully.");
+			return ResponseEntity.ok("Cart updated successfully.");
+		} else {
+			logger.error("Failed to update cart.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to update cart.");
+		}
+	}
+
 	@DeleteMapping("/deleteCartByCustomerId")
 	public ResponseEntity<String> deleteCartByCustomerId(@RequestParam String customerId,
 			@RequestBody CartItemDeleteRequest cartItemDeleteRequest) {

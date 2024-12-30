@@ -182,6 +182,40 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
+	public boolean updateCartByOrderService(String customerId, String cartProductId, String cartInventoryId) {
+		Optional<Cart> optionalCart = cartRepository.findByCustomerId(customerId);
+
+		if (!optionalCart.isPresent()) {
+			logger.error("No cart found for customerId={}", customerId);
+			return false;
+		}
+
+		Cart cart = optionalCart.get();
+		System.err.println(cart.getCustomerId());
+		boolean updated = false;
+
+		for (CartItem cartItem : cart.getItems()) {
+			if (cartItem.getCartProductId().equals(cartProductId)
+					&& cartItem.getCartInventoryId().equals(cartInventoryId)) {
+				cartItem.setOrderStatus("ORDERED on " + new Date());
+				cartItem.setIsActive(false);
+				cartItem.setModifiedAt(new Date());
+				updated = true;
+				break;
+			}
+		}
+
+		if (updated) {
+			cartRepository.save(cart);
+		} else {
+			logger.error("Cart item not found for cartProductId={} and cartInventoryId={}", cartProductId,
+					cartInventoryId);
+		}
+
+		return updated;
+	}
+
+	@Override
 	public boolean updateCart(String customerId, CartRequest cartRequest) {
 		try {
 			logger.info("CartServiceImpl:updateCart execution started");

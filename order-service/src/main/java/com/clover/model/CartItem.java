@@ -24,4 +24,6 @@ public class CartItem {
 	private Integer quantity;
 	private Double priceOfCartItem;
 	private Double totalPriceOfCartItem;
+	private String orderStatus;
+
 }

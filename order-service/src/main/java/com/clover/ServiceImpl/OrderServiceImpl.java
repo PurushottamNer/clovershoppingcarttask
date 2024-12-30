@@ -84,6 +84,10 @@ public class OrderServiceImpl implements OrderService {
 					orderItems.add(orderItem1);
 
 					totalAmount += cartItem.getTotalPriceOfCartItem();
+
+					cartClient.updateCartByOrderService(customerId, cartItem.getCartProductId(),
+							cartItem.getCartInventoryId());
+
 				}
 			}
 		}

@@ -12,6 +12,8 @@ public interface CartService {
 
 	public boolean updateCart(String customerId, CartRequest cartRequest);
 
+	public boolean updateCartByOrderService(String customerId, String cartProductId, String cartInventoryId);
+
 	public boolean deleteCartByCustomerId(String customerId, CartItemDeleteRequest cartItemDeleteRequest);
 
 	public List<Cart> getAllActiveCartsByCustomerId(String customerId);
